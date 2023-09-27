@@ -1,0 +1,18 @@
+/*
+BindableView 프로토콜은 Reactorkit의 View 프로토콜처럼
+TCA에서 규격화 하고 싶어 만들게 되었습니다.
+*/
+
+import ComposableArchitecture
+import Combine
+
+
+protocol BindableView : AnyObject {
+    
+    associatedtype ReducerType: Reducer
+    
+    var viewStore:ViewStoreOf<ReducerType> { get set }
+    var cancellables:Set<AnyCancellable> { get set }
+
+    func bind(_ viewStore:ViewStoreOf<ReducerType>)
+}
